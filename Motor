@@ -1,0 +1,39 @@
+
+public class Motor {
+	
+final private int raioDaRoda = 3;
+final private int raioDoRobo = 24;
+private int numeroDeVoltas = raioDoRobo/(4*raioDaRoda);
+private boolean ligado;
+private int perimetro = 18; // 3*2*raioDaRoda
+private int tacometro=0;
+
+public void PercorrerDistancia(){
+	tacometro++;
+}
+
+public void Andar(){
+	ligado = true;
+	System.out.println("O motor esta esta girando para frente.");
+	do{
+		PercorrerDistancia();
+	}while(ligado==true);
+}
+public void Re(){
+	ligado = true;
+	System.out.println("O motor esta girando para traz.");
+	do{
+		tacometro--;
+	}while(ligado==true);
+}
+public void Parar(){
+	ligado=false;
+	tacometro=0;
+}
+
+public int distanciaPercorrida(){
+	return tacometro*18;
+}
+
+	
+}
