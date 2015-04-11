@@ -1,0 +1,20 @@
+import java.util.Random;
+public class Obstaculo {
+	Random numeroAleatorio= new Random();
+private int largura = 10, comprimento = 10;
+private int distanciaObj=numeroAleatorio.nextInt(225);
+public Random getNumeroAleatorio() {
+	return numeroAleatorio;
+}
+public void setNumeroAleatorio(Random numeroAleatorio) {
+	this.numeroAleatorio = numeroAleatorio;
+}
+
+public void setComprimento(int comprimento) {
+	this.comprimento = comprimento;
+}
+public int getDistanciaObj() {
+	return distanciaObj;
+}
+
+}
