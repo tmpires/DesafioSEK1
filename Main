@@ -1,0 +1,19 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		Motor motorDireito = new Motor();
+		Motor motorEsquerdo = new Motor();
+		SensorUltrasom sensor = new SensorUltrasom();
+		
+		while(true){
+			motorDireito.Andar();
+			motorEsquerdo.Andar();
+			Obstaculo obs = new Obstaculo();
+			
+			
+		}
+
+	}
+
+}
