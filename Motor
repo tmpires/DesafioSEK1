@@ -1,39 +1,67 @@
-
 public class Motor {
-	
-final private int raioDaRoda = 3;
-final private int raioDoRobo = 24;
-private int numeroDeVoltas = raioDoRobo/(4*raioDaRoda);
-private boolean ligado;
-private int perimetro = 18; // 3*2*raioDaRoda
-private int tacometro=0;
 
-public void PercorrerDistancia(){
-	tacometro++;
-}
+	final private int raioDaRoda = 3;
+	final private int raioDoRobo = 24;
+	private int numeroDeVoltas = raioDoRobo / (4 * raioDaRoda);
+	private boolean ligado;
+	final private int perimetro = 3 * 2 * raioDaRoda;
+	private int tacometro = 0;
+	private boolean frente;
 
-public void Andar(){
-	ligado = true;
-	System.out.println("O motor esta esta girando para frente.");
-	do{
+	public void PercorrerDistancia() {
+		Thread thPercorrerDistancia = new Thread(new Runnable() {
+			// Logica a ser executada
+			public void run() {
+				try {
+					while (ligado == true) {
+						if (frente == true)
+							tacometro++;
+						else
+							tacometro--;
+						Thread.sleep(2000);
+					}
+				} catch (Exception e) {
+				}
+			}
+
+		});
+
+		// Inicia a thread
+		thPercorrerDistancia.start();
+	}
+
+	public int getPercorrerDistancia() {
+		return tacometro;
+	}
+
+	public void Andar() {
+		ligado = true;
+		frente = true;
+		// System.out.println("O motor esta girando para frente.");
+		// do {
 		PercorrerDistancia();
-	}while(ligado==true);
-}
-public void Re(){
-	ligado = true;
-	System.out.println("O motor esta girando para traz.");
-	do{
-		tacometro--;
-	}while(ligado==true);
-}
-public void Parar(){
-	ligado=false;
-	tacometro=0;
-}
+		// } while (ligado == true);
+	}
 
-public int distanciaPercorrida(){
-	return tacometro*18;
-}
+	public void Re() {
+		ligado = true;
+		frente = false;
+		// System.out.println("O motor esta girando para traz.");
+		// do {
+		PercorrerDistancia();
+		// } while (ligado == true);
+	}
 
-	
+	public void Parar() {
+		ligado = false;
+		tacometro = 0;
+	}
+
+	public int getdistanciaPercorrida() {
+		return tacometro * perimetro;
+	}
+
+	public int getPerimetro() {
+		return perimetro;
+	}
 }
