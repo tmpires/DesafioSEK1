@@ -1,9 +1,8 @@
+public class SensorUltrassom {
+	Obstaculo obst = new Obstaculo();
 
-public class SensorUltrasom {
+	public int Leitura() {
+		return obst.getDistanciaObj();
+	}
 
-
-public int Leitura(Obstaculo obs){
-	
-	return obs.getDistanciaObj();
-}
 }
