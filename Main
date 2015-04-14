@@ -1,19 +1,40 @@
-
 public class Main {
+	static Motor motorDireito;
+	static Motor motorEsquerdo;
 
 	public static void main(String[] args) {
-		Motor motorDireito = new Motor();
-		Motor motorEsquerdo = new Motor();
-		SensorUltrasom sensor = new SensorUltrasom();
-		
-		while(true){
+		final int DISTANCIA_MINIMA = 40;
+		motorDireito = new Motor();
+		motorEsquerdo = new Motor();
+		Navegacao navegacao = new Navegacao();
+		SensorUltrassom sensor = new SensorUltrassom();
+		int distancia = 0;
+
+		while (true) {
+			// Liga os motores para o robo andar
 			motorDireito.Andar();
 			motorEsquerdo.Andar();
-			Obstaculo obs = new Obstaculo();
-			
-			
+			System.out.println("O Robo está andando!");
+
+			// Recebe as leituras do sensor para executar a condição de parada
+			// ao perceber o obstáculo
+			distancia = sensor.Leitura();
+			System.out.println("Leitura do sensor = " + distancia + " cm ");
+
+			while (distancia > DISTANCIA_MINIMA) {
+				distancia = distancia - motorDireito.getPerimetro();
+				System.out.println("Leitura do sensor = " + distancia + " cm ");
+				Navegacao.delay(1000);
+			}
+			motorDireito.Parar();
+			motorEsquerdo.Parar();
+			System.out.println("O robou parou!");
+
+			navegacao.Desviar();
+
+			sensor.obst.ultrapassou = true;
+			Navegacao.delay(2000);
+
 		}
-
 	}
-
 }
