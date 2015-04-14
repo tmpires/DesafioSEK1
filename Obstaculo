@@ -1,20 +1,38 @@
-import java.util.Random;
 public class Obstaculo {
-	Random numeroAleatorio= new Random();
-private int largura = 10, comprimento = 10;
-private int distanciaObj=numeroAleatorio.nextInt(225);
-public Random getNumeroAleatorio() {
-	return numeroAleatorio;
-}
-public void setNumeroAleatorio(Random numeroAleatorio) {
-	this.numeroAleatorio = numeroAleatorio;
-}
+	public boolean ultrapassou;
+	private int distanciaObj = 255;
 
-public void setComprimento(int comprimento) {
-	this.comprimento = comprimento;
-}
-public int getDistanciaObj() {
-	return distanciaObj;
-}
+	// constructor
+	public Obstaculo() {
+		GerarObstaculo();
+	}
 
+	public void GerarObstaculo() {
+		ultrapassou = false;
+		System.out.println("Um novo obstaculo foi gerado à " + distanciaObj
+				+ " cm");
+		Thread thGerarObstaculo = new Thread(new Runnable() {
+			// Logica a ser executada
+			public void run() {
+
+				while (!ultrapassou) {
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						System.err.println("Ainda não ultrapassou");
+					}
+
+				}
+				GerarObstaculo();
+
+			}
+		});
+
+		// Inicia a thread
+		thGerarObstaculo.start();
+	}
+
+	public int getDistanciaObj() {
+		return distanciaObj;
+	}
 }
