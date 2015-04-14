@@ -1,0 +1,58 @@
+public class Navegacao {
+
+	public void Desviar() {
+		System.out.println("O robo começou a desviar...");
+		VirarEsquerda();
+		Main.motorDireito.Andar();
+		Main.motorEsquerdo.Andar();
+		delay(500);
+		Main.motorDireito.Parar();
+		Main.motorEsquerdo.Parar();
+		delay(500);
+
+		VirarDireita();
+		Main.motorDireito.Andar();
+		Main.motorEsquerdo.Andar();
+		delay(500);
+		Main.motorDireito.Parar();
+		Main.motorEsquerdo.Parar();
+		delay(500);
+
+		VirarDireita();
+		Main.motorDireito.Andar();
+		Main.motorEsquerdo.Andar();
+		delay(500);
+		Main.motorDireito.Parar();
+		Main.motorEsquerdo.Parar();
+		delay(500);
+
+		VirarEsquerda();
+		Main.motorDireito.Andar();
+		Main.motorEsquerdo.Andar();
+		delay(500);
+		Main.motorDireito.Parar();
+		Main.motorEsquerdo.Parar();
+		delay(500);
+		System.out.println("O robo desviou do obstáculo!");
+	}
+
+	public static void VirarDireita() {
+		Main.motorDireito.Re();
+		Main.motorEsquerdo.Andar();
+		delay(2000);
+
+	}
+
+	public static void VirarEsquerda() {
+		Main.motorDireito.Andar();
+		Main.motorEsquerdo.Re();
+		delay(2000);
+	}
+
+	public static void delay(int tempo) {
+		try {
+			Thread.sleep(tempo);
+		} catch (Exception e) {
+		}
+	}
+}
