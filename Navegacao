@@ -1,6 +1,6 @@
 public class Navegacao {
 	public static boolean PermitidoVirar = false;
-
+// Desviar() traça uma trajetoria de desvio retangular
 	public void Desviar() {
 		System.out.println("O robo começou a desviar...");
 		VirarEsquerda();
@@ -43,7 +43,7 @@ public class Navegacao {
 		Main.motorDireito.Re();
 		Main.motorEsquerdo.Andar();
 		PermitidoVirar = false;
-		Delay(2000);
+		Delay(1000);
 
 	}
 
@@ -53,15 +53,15 @@ public class Navegacao {
 		Main.motorDireito.Andar();
 		Main.motorEsquerdo.Re();
 		PermitidoVirar = false;
-		Delay(2000);
+		Delay(1000);
 	}
-	
-	/* Recebe um valor de tempo em milisegundos 
-	   para fazer uma pausa na execução*/
+
+	// Recebe um valor de tempo em milisegundos para fazer uma pausa na execução
+
 	public static void Delay(int tempo) {
 		try {
 			Thread.sleep(tempo);
 		} catch (Exception e) {
 		}
 	}
-} 
+}
