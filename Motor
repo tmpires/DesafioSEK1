@@ -10,11 +10,12 @@ public class Motor {
 	private int tacometro = 0;
 	private boolean frente;
 
-	public void PercorrerDistancia() {
-		Thread thPercorrerDistancia = new Thread(new Runnable() {
+	public void Andar() {
+		Thread thAndar = new Thread(new Runnable() {
 			// Logica a ser executada
 			public void run() {
-				// Quando as funções VirarEsquerda e VirarDireita forem chamadas elas colocam PermitidoVirar = true
+				// Quando as funções VirarEsquerda e VirarDireita forem chamadas
+				// elas colocam PermitidoVirar = true
 				if (Navegacao.PermitidoVirar) {
 					for (int i = 0; i < numeroDeVoltas; i++) {
 						if (frente == true)
@@ -23,7 +24,8 @@ public class Motor {
 							tacometro--;
 					}
 				}// fim if
-					// Quando PermitidoVirar for falso ele anda enquanto while estiver ligado
+					// Quando PermitidoVirar for falso ele anda enquanto while
+					// estiver ligado
 				else {
 					try {
 						while (ligado == true) {
@@ -41,32 +43,27 @@ public class Motor {
 		});
 
 		// Inicia a thread
-		thPercorrerDistancia.start();
+		thAndar.start();
 	}
 
-	public int getPercorrerDistancia() {
-		return tacometro;
-	}
-
-	public void Andar() {
+	// Gira motor pra frente
+	public void MoverParaFrente() {
 		ligado = true;
 		frente = true;
-		PercorrerDistancia();
+		Andar();
 	}
 
+	// Gira o motor pra tras
 	public void Re() {
 		ligado = true;
 		frente = false;
-		PercorrerDistancia();
+		Andar();
 	}
 
+	// Para o motor
 	public void Parar() {
 		ligado = false;
 		tacometro = 0;
-	}
-
-	public int GetDistanciaPercorrida() {
-		return tacometro * perimetro;
 	}
 
 	public int GetPerimetro() {
