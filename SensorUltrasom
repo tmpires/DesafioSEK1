@@ -1,8 +1,8 @@
 public class SensorUltrassom {
 	Obstaculo obst = new Obstaculo();
-
+	//Comunica o Obstaculo com o método Main
 	public int Leitura() {
-		return obst.getDistanciaObj();
+		return obst.GetDistanciaObjeto();
 	}
 
 }
