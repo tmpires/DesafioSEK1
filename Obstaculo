@@ -1,6 +1,6 @@
 public class Obstaculo {
 	public boolean ultrapassou;
-	private int distanciaObj = 255;
+	private int DISTANCIA_OBJETO = 255;
 
 	// constructor
 	public Obstaculo() {
@@ -9,7 +9,7 @@ public class Obstaculo {
 
 	public void GerarObstaculo() {
 		ultrapassou = false;
-		System.out.println("Um novo obstaculo foi gerado à " + distanciaObj
+		System.out.println("Um novo obstáculo foi gerado à " + DISTANCIA_OBJETO
 				+ " cm");
 		Thread thGerarObstaculo = new Thread(new Runnable() {
 			// Logica a ser executada
@@ -21,18 +21,15 @@ public class Obstaculo {
 					} catch (InterruptedException e) {
 						System.err.println("Ainda não ultrapassou");
 					}
-
 				}
 				GerarObstaculo();
-
 			}
 		});
-
 		// Inicia a thread
 		thGerarObstaculo.start();
 	}
 
-	public int getDistanciaObj() {
-		return distanciaObj;
+	public int GetDistanciaObjeto() {
+		return DISTANCIA_OBJETO;
 	}
 }
