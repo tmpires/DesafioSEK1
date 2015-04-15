@@ -15,16 +15,15 @@ public class Main {
 			motorDireito.Andar();
 			motorEsquerdo.Andar();
 			System.out.println("O Robo está andando!");
-
 			// Recebe as leituras do sensor para executar a condição de parada
 			// ao perceber o obstáculo
 			distancia = sensor.Leitura();
 			System.out.println("Leitura do sensor = " + distancia + " cm ");
 
 			while (distancia > DISTANCIA_MINIMA) {
-				distancia = distancia - motorDireito.getPerimetro();
+				distancia = distancia - motorDireito.GetPerimetro();
 				System.out.println("Leitura do sensor = " + distancia + " cm ");
-				Navegacao.delay(1000);
+				Navegacao.Delay(1000);
 			}
 			motorDireito.Parar();
 			motorEsquerdo.Parar();
@@ -33,7 +32,7 @@ public class Main {
 			navegacao.Desviar();
 
 			sensor.obst.ultrapassou = true;
-			Navegacao.delay(2000);
+			Navegacao.Delay(2000);
 
 		}
 	}
