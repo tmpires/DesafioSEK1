@@ -1,58 +1,67 @@
 public class Navegacao {
+	public static boolean PermitidoVirar = false;
 
 	public void Desviar() {
 		System.out.println("O robo começou a desviar...");
 		VirarEsquerda();
 		Main.motorDireito.Andar();
 		Main.motorEsquerdo.Andar();
-		delay(500);
+		Delay(500);
 		Main.motorDireito.Parar();
 		Main.motorEsquerdo.Parar();
-		delay(500);
+		Delay(500);
 
 		VirarDireita();
 		Main.motorDireito.Andar();
 		Main.motorEsquerdo.Andar();
-		delay(500);
+		Delay(500);
 		Main.motorDireito.Parar();
 		Main.motorEsquerdo.Parar();
-		delay(500);
+		Delay(500);
 
 		VirarDireita();
 		Main.motorDireito.Andar();
 		Main.motorEsquerdo.Andar();
-		delay(500);
+		Delay(500);
 		Main.motorDireito.Parar();
 		Main.motorEsquerdo.Parar();
-		delay(500);
+		Delay(500);
 
 		VirarEsquerda();
 		Main.motorDireito.Andar();
 		Main.motorEsquerdo.Andar();
-		delay(500);
+		Delay(500);
 		Main.motorDireito.Parar();
 		Main.motorEsquerdo.Parar();
-		delay(500);
+		Delay(500);
 		System.out.println("O robo desviou do obstáculo!");
 	}
 
+	// Faz o Robo girar 90 graus a direita
 	public static void VirarDireita() {
+		PermitidoVirar = true;
 		Main.motorDireito.Re();
 		Main.motorEsquerdo.Andar();
-		delay(2000);
+		PermitidoVirar = false;
+		Delay(2000);
 
 	}
 
+	// Faz o Robo girar 90 graus a esquerda
 	public static void VirarEsquerda() {
+		PermitidoVirar = true;
 		Main.motorDireito.Andar();
 		Main.motorEsquerdo.Re();
-		delay(2000);
+		PermitidoVirar = false;
+		Delay(2000);
 	}
-
-	public static void delay(int tempo) {
+	
+	/* Recebe um valor de tempo em milisegundos 
+	   para fazer uma pausa na execução*/
+	public static void Delay(int tempo) {
 		try {
 			Thread.sleep(tempo);
 		} catch (Exception e) {
 		}
 	}
-}
+} 
