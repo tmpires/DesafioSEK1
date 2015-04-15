@@ -1,10 +1,12 @@
 public class Motor {
 
-	final private int raioDaRoda = 3;
-	final private int raioDoRobo = 24;
-	private int numeroDeVoltas = raioDoRobo / (4 * raioDaRoda);
+	final private int RAIO_RODA = 3;
+	final private int RAIO_ROBO = 24;
+	// Variável numeroDeVoltas diz quanto as rodas precisarão girar para que o
+	// robo vire 90 graus
+	private int numeroDeVoltas = RAIO_ROBO / (4 * RAIO_RODA);
 	private boolean ligado;
-	final private int perimetro = 3 * 2 * raioDaRoda;
+	final private int perimetro = 3 * 2 * RAIO_RODA;
 	private int tacometro = 0;
 	private boolean frente;
 
@@ -12,15 +14,27 @@ public class Motor {
 		Thread thPercorrerDistancia = new Thread(new Runnable() {
 			// Logica a ser executada
 			public void run() {
-				try {
-					while (ligado == true) {
+				// Quando as funções VirarEsquerda e VirarDireita forem chamadas elas colocam PermitidoVirar = true
+				if (Navegacao.PermitidoVirar) {
+					for (int i = 0; i < numeroDeVoltas; i++) {
 						if (frente == true)
 							tacometro++;
 						else
 							tacometro--;
-						Thread.sleep(2000);
 					}
-				} catch (Exception e) {
+				}// fim if
+					// Quando PermitidoVirar for falso ele anda enquanto while estiver ligado
+				else {
+					try {
+						while (ligado == true) {
+							if (frente == true)
+								tacometro++;
+							else
+								tacometro--;
+							Thread.sleep(2000);
+						}
+					} catch (Exception e) {
+					}
 				}
 			}
 
@@ -37,19 +51,13 @@ public class Motor {
 	public void Andar() {
 		ligado = true;
 		frente = true;
-		// System.out.println("O motor esta girando para frente.");
-		// do {
 		PercorrerDistancia();
-		// } while (ligado == true);
 	}
 
 	public void Re() {
 		ligado = true;
 		frente = false;
-		// System.out.println("O motor esta girando para traz.");
-		// do {
 		PercorrerDistancia();
-		// } while (ligado == true);
 	}
 
 	public void Parar() {
@@ -57,11 +65,11 @@ public class Motor {
 		tacometro = 0;
 	}
 
-	public int getdistanciaPercorrida() {
+	public int GetDistanciaPercorrida() {
 		return tacometro * perimetro;
 	}
 
-	public int getPerimetro() {
+	public int GetPerimetro() {
 		return perimetro;
 	}
 }
