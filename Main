@@ -3,11 +3,11 @@ public class Main {
 	static Motor motorEsquerdo;
 
 	public static void main(String[] args) {
-		final int DISTANCIA_MINIMA = 40;
+		final int DISTANCIA_MINIMA = 50;
 		motorDireito = new Motor();
 		motorEsquerdo = new Motor();
 		Navegacao navegacao = new Navegacao();
-		SensorUltrassom sensor = new SensorUltrassom();
+		SensorUltrasom sensor = new SensorUltrasom();
 		int distancia = 0;
 
 		while (true) {
@@ -25,13 +25,15 @@ public class Main {
 				System.out.println("Leitura do sensor = " + distancia + " cm ");
 				Navegacao.Delay(1000);
 			}
+			// Para o motor para iniciar a manobra de desvio
 			motorDireito.Parar();
 			motorEsquerdo.Parar();
 			System.out.println("O robou parou!");
-
+			// Inicia a manobra de desvio
 			navegacao.Desviar();
-
+			//Sinaliza que o obstaculo foi ultrapassado
 			sensor.obst.ultrapassou = true;
+			//Da tempo para o novo obstaculo ser gerado
 			Navegacao.Delay(2000);
 
 		}
