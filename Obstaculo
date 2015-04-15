@@ -1,6 +1,9 @@
+import java.util.Random;
+
 public class Obstaculo {
+	private Random aleatorio = new Random();
 	public boolean ultrapassou;
-	private int DISTANCIA_OBJETO = 255;
+	private int distanciaObjeto = 0;
 
 	// constructor
 	public Obstaculo() {
@@ -9,12 +12,17 @@ public class Obstaculo {
 
 	public void GerarObstaculo() {
 		ultrapassou = false;
-		System.out.println("Um novo obstáculo foi gerado à " + DISTANCIA_OBJETO
+		// inicia a distancia do objeto como zero
+		distanciaObjeto = 0;
+		while (distanciaObjeto < 50)
+			// gera a distancia aleatoria do objeto
+			distanciaObjeto = aleatorio.nextInt(255);
+		System.out.println("Um novo obstáculo foi gerado à " + distanciaObjeto
 				+ " cm");
 		Thread thGerarObstaculo = new Thread(new Runnable() {
 			// Logica a ser executada
 			public void run() {
-
+				// verifica se o obstaculo ja foi ultrapassado
 				while (!ultrapassou) {
 					try {
 						Thread.sleep(50);
@@ -23,6 +31,7 @@ public class Obstaculo {
 					}
 				}
 				GerarObstaculo();
+
 			}
 		});
 		// Inicia a thread
@@ -30,6 +39,6 @@ public class Obstaculo {
 	}
 
 	public int GetDistanciaObjeto() {
-		return DISTANCIA_OBJETO;
+		return distanciaObjeto;
 	}
 }
